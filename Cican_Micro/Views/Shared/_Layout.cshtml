@@ -26,13 +26,17 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">Cican_Micro</a>
+                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand"><img src="~/images/CicanMicroMini.png" alt="ASP.NET" class="img-responsive" /></a>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
+                    <li><a asp-area="" asp-controller="Home" asp-action="Index">Accueil</a></li>
+                    <li><a asp-area="" asp-controller="Produits" asp-action="Index">Nos Produits</a></li>
+                    <li><a asp-area="" asp-controller="Home" asp-action="Liquidations">Liquidations</a></li>
+                    <li><a asp-area="" asp-controller="Home" asp-action="NProduits">Nouveaux Produits</a></li>
+                    <li><a asp-area="" asp-controller="Home" asp-action="Expedition">Expédition</a></li>
+                    <li><a asp-area="" asp-controller="Home" asp-action="About">À Propos</a></li>
+                    <li><a asp-area="" asp-controller="Home" asp-action="Contact">Nous Contacter</a></li>
                 </ul>
                 <partial name="_LoginPartial" />
             </div>
@@ -45,7 +49,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; 2018 - Cican_Micro</p>
+            <p>&copy; 2018 - Cican Micro</p>
         </footer>
     </div>
 
@@ -69,7 +73,15 @@
         </script>
         <script src="~/js/site.min.js" asp-append-version="true"></script>
     </environment>
-
+    <div id="fb-root"></div>
+    <script>
+    (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = 'https://connect.facebook.net/fr_CA/sdk.js#xfbml=1&version=v3.1';
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));</script>
     @RenderSection("Scripts", required: false)
 </body>
 </html>

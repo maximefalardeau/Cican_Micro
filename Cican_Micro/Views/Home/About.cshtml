@@ -1,7 +1,48 @@
 ﻿@{
-    ViewData["Title"] = "About";
+    ViewData["Title"] = "À Propos";
 }
 <h2>@ViewData["Title"]</h2>
 <h3>@ViewData["Message"]</h3>
+<div class="row">
+    <hr>
+    <div class="col-md-7">
+        <div class="col-md-12">
+            <h2>Notre histoire</h2>
+            L'entreprise est né en 2018 par 3 programmeurs encore au études.
+            L'ambition de ses jeunes étudiants et leur vision à la pointe de la technologie on mené à leur succès.
+        </div>
+    </div>
+    <div class="col-md-5">
+        <div class="row">
+            <div class="col-md-12">
+                <h2>Nos buts</h2>
+                <ul>
+                    <li>Facilité votre expérience de magasinage en ligne.</li>
+                    <li>Vous offrir des produits de qualité à bas prix</li>
+                </ul>
+            </div>
 
-<p>Use this area to provide additional information.</p>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <h2>Expédition</h2>
+                <ul>
+                    Pour les information d'expédition, consulté la page
+                    <a asp-area="" asp-controller="Home" asp-action="Expedition">expédition</a>.
+
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <h2>Politiques</h2>
+                <ul>
+                    Pour lire nos politiques , consulté la page
+                    <a asp-area="" asp-controller="Home" asp-action="privacy">Politiques</a>.
+
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</div>

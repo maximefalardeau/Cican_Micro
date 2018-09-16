@@ -17,14 +17,37 @@ namespace Cican_Micro.Controllers
 
         public IActionResult About()
         {
-            ViewData["Message"] = "Your application description page.";
+            ViewData["Message"] = "À propos de nous";
 
             return View();
         }
+        public IActionResult Produits()
+        {
+            ViewData["Message"] = "Nos produits";
 
+            return View();
+        }
+        public IActionResult NProduits()
+        {
+            ViewData["Message"] = "Nos nouveaux produits";
+
+            return View();
+        }
+        public IActionResult Liquidations()
+        {
+            ViewData["Message"] = "Nos liquidations";
+
+            return View();
+        }
+        public IActionResult Expedition()
+        {
+            ViewData["Message"] = "Informations à propos de l'expédition";
+
+            return View();
+        }
         public IActionResult Contact()
         {
-            ViewData["Message"] = "Your contact page.";
+            ViewData["Message"] = "Contactez-nous pour toutes vos questions au sujet de nos produits";
 
             return View();
         }

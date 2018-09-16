@@ -1,0 +1,66 @@
+﻿@model Cican_Micro.Models.Produits
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+
+
+<div>
+    <div class="row">
+        
+        <div class="col-md-1">
+            <br>
+            <a asp-action="Index"><img src="~/images/Back.png" alt="img" height="35" width="60" /></a>
+        </div>
+        <div class="col-md-11">
+            
+            <h3>@Html.DisplayFor(model => model.Nom)</h3>
+
+        </div>
+    </div>
+
+    <hr />
+    
+    
+    <div class="row">
+        
+        <div class="col-md-2">
+            <img src="@Url.Content("~/images/Produits/"+@Model.ImageUrl)" alt="img" height="160" width="160" />
+        </div>
+        <div class="col-md-10">
+            <dl class="dl-horizontal">
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Nom)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Nom)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Modele)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Modele)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Categorie)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Categorie)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.prix)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.prix)
+                </dd>                
+            </dl>
+        </div>
+    </div>
+    
+    
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.ID">Edit</a>
+</div>
