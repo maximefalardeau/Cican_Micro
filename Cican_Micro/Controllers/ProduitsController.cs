@@ -6,14 +6,15 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Cican_Micro.Models;
+using Cican_Micro.Data;
 
 namespace Cican_Micro.Controllers
 {
     public class ProduitsController : Controller
     {
-        private readonly Cican_MicroContext _context;
+        private readonly ApplicationDbContext _context;
 
-        public ProduitsController(Cican_MicroContext context)
+        public ProduitsController(ApplicationDbContext context)
         {
             _context = context;
         }

@@ -17,7 +17,7 @@ namespace Cican_Micro.Migrations
                     Nom = table.Column<string>(nullable: true),
                     Modele = table.Column<string>(nullable: true),
                     Categorie = table.Column<string>(nullable: true),
-                    prix = table.Column<decimal>(nullable: false)
+                    Prix = table.Column<decimal>(nullable: false)
                 },
                 constraints: table =>
                 {

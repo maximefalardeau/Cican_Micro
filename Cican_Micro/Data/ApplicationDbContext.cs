@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Cican_Micro.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -12,6 +13,6 @@ namespace Cican_Micro.Data
             : base(options)
         {
         }
-        //Mettre les DbSet ici!!!
+        public DbSet<Produits> Produits { get; set; }
     }
 }

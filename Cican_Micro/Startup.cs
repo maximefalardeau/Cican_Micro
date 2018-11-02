@@ -43,10 +43,6 @@ namespace Cican_Micro
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
-            services.AddDbContext<Cican_MicroContext>(options =>
-                    options.UseSqlServer(Configuration.GetConnectionString("Cican_MicroContext")));
-
-          
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -75,6 +71,20 @@ namespace Cican_Micro
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
+        }
+        private async Task CreateRoles(IServiceProvider serviceProvider)
+        {
+            var RoleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();//Nouveau
+            string[] roleNames = { "Administrateur", "Visteur", "Utilisateur" };
+            foreach (var roleName in roleNames)
+            {
+                var roleExist = await RoleManager.RoleExistsAsync(roleName);
+                if (!roleExist)
+                {
+                    //create the roles and seed them to the database: Question 1
+                    await RoleManager.CreateAsync(new IdentityRole(roleName));
+                }
+            }
         }
     }
 }
