@@ -1,0 +1,28 @@
+﻿
+@{
+    ViewData["Title"] = "Upload_Images";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Upload_Images</h2>
+
+<table>
+    <tr>
+        <td>
+            <form asp-controller="Image" asp-action="Upload_Image" method="post" enctype="multipart/form-data">
+                <br />
+                <input type="file" name="file" \>
+                <br />
+                <button type="submit">Upload</button>
+            </form>
+            <p>
+                <label>Fichier soumis: @ViewData["FilePath"]</label>
+            </p>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <img src="~/upload_images/" />
+        </td>
+    </tr>
+</table>
