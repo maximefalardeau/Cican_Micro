@@ -35,7 +35,7 @@ namespace Cican_Micro.Controllers
             {
                 await file.CopyToAsync(stream); //copy file
             }
-
+            ViewData["Image"] = Url.Content("~/upload_images/" + file.FileName);
             ViewData["FilePath"] = path_to_Images;
             return View();
 
