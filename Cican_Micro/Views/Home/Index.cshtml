@@ -1,113 +1,114 @@
 ﻿@{
     ViewData["Title"] = "Page d'accueil";
-    
- }       
+
+}
 
 
-        <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="6000">
-            <ol class="carousel-indicators">
-                <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-                <li data-target="#myCarousel" data-slide-to="1"></li>
-                <li data-target="#myCarousel" data-slide-to="2"></li>
-            </ol>
-            <div class="carousel-inner" role="listbox">
-                <div class="item active">
-                    <img src="~/images/BanniereV1.png" alt="ASP.NET" class="img-responsive" />
-                    <div class="carousel-caption" role="option">
-                        <p>
-                            Votre solution en matière de composante électronique
-                            <br>
-                            <a class="btn btn-default" asp-area="" asp-controller="Produits" asp-action="Index">Nos produits</a>
 
-                        </p>
-                    </div>
-                </div>
-                <div class="item">
-                    <img src="~/images/BanniereV2.png" alt="Visual Studio" class="img-responsive" />
-                    <div class="carousel-caption" role="option">
-                        <p>
-                            Votre solution en matière de composante électronique
-                            <br>
-                            <a class="btn btn-default" asp-area="" asp-controller="Produits" asp-action="Index">Nouveaux Produits</a>
-                        </p>
-                    </div>
-                </div>
-                <div class="item">
-                    <img src="~/images/BanniereV3.png" alt="Microsoft Azure" class="img-responsive" />
-                    <div class="carousel-caption" role="option">
-                        <p>
-                            Votre solution en matière de composante électronique
-                            <br>
-                            <a class="btn btn-default" asp-area="" asp-controller="Produits" asp-action="Index">Liquidations</a>
-                        </p>
-                    </div>
-                </div>
+<div id="myCarousel" class="carousel slide " data-ride="carousel" data-interval="6000">
+    <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+        <li data-target="#myCarousel" data-slide-to="2"></li>
+    </ol>
+    <div class="carousel-inner" role="listbox">
+        <div class="item active">
+            <img src="~/images/BanniereV1.png" alt="ASP.NET" class="img-responsive" />
+            <div class="carousel-caption" role="option">
+                <p>
+                    Votre solution en matière de composante électronique
+                    <br>
+                    <a class="btn btn-default" asp-area="" asp-controller="Produits" asp-action="Index">Nos produits</a>
+
+                </p>
             </div>
-            <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-                <span class="sr-only">Précédent</span>
-            </a>
-            <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                <span class="sr-only">Suivant</span>
-            </a>
         </div>
+        <div class="item">
+            <img src="~/images/BanniereV2.png" alt="Visual Studio" class="img-responsive" />
+            <div class="carousel-caption" role="option">
+                <p>
+                    Votre solution en matière de composante électronique
+                    <br>
+                    <a class="btn btn-default" asp-area="" asp-controller="Produits" asp-action="Index">Nouveaux Produits</a>
+                </p>
+            </div>
+        </div>
+        <div class="item">
+            <img src="~/images/BanniereV3.png" alt="Microsoft Azure" class="img-responsive" />
+            <div class="carousel-caption" role="option">
+                <p>
+                    Votre solution en matière de composante électronique
+                    <br>
+                    <a class="btn btn-default" asp-area="" asp-controller="Produits" asp-action="Index">Liquidations</a>
+                </p>
+            </div>
+        </div>
+    </div>
+    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+        <span class="sr-only">Précédent</span>
+    </a>
+    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+        <span class="sr-only">Suivant</span>
+    </a>
+</div>
 
+<div class="row ">
+    <hr>
+    <div class="col-md-8">
         <div class="row">
-            <hr>
-            <div class="col-md-8">
-                <div class="row">
-                    <div class="col-md-12">
-                        <h2>Nos produits vedettes</h2>
-                        <ul>
-
-                            <li><a asp-action="Details" asp-controller="Produits" asp-route-id="1">Premier Produit vedette </a></li>
-                            <li><a asp-action="Details" asp-controller="Produits" asp-route-id="2">Deuxieme Produit vedette </a></li>
-                            <li><a asp-action="Details" asp-controller="Produits" asp-route-id="3">Troisième Produit vedette </a></li>
-                            <li><a asp-action="Details" asp-controller="Produits" asp-route-id="4">Quatrième Produit vedette </a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <h2>Nos Promotions vedettes</h2>
-                        <ul>
-                            <li><a asp-action="Details" asp-controller="Produits" asp-route-id="1">Premier Produit vedette </a></li>
-                            <li><a asp-action="Details" asp-controller="Produits" asp-route-id="2">Deuxieme Produit vedette </a></li>
-                            <li><a asp-action="Details" asp-controller="Produits" asp-route-id="3">Troisième Produit vedette </a></li>
-                            <li><a asp-action="Details" asp-controller="Produits" asp-route-id="4">Quatrième Produit vedette </a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <h2>Nos nouveaux produits vedettes</h2>
-                        <ul>
-                            <li><a asp-action="Details" asp-controller="Produits" asp-route-id="1">Premier Produit vedette </a></li>
-                            <li><a asp-action="Details" asp-controller="Produits" asp-route-id="2">Deuxieme Produit vedette </a></li>
-                            <li><a asp-action="Details" asp-controller="Produits" asp-route-id="3">Troisième Produit vedette </a></li>
-                            <li><a asp-action="Details" asp-controller="Produits" asp-route-id="4">Quatrième Produit vedette </a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-4 Facebook">
-                <h2>Facebook</h2>
-                <p>Joignez notre page Facebook pour obtenir en exclusivité :</p>
+            <div class="col-md-12">
+                <h2>Nos produits vedettes</h2>
                 <ul>
-                    <li>Nos promotions</li>
-                    <li>Nos nouveaux produits</li>
+
+                    <li><a asp-action="Details" asp-controller="Produits" asp-route-id="1">Premier Produit vedette </a></li>
+                    <li><a asp-action="Details" asp-controller="Produits" asp-route-id="2">Deuxieme Produit vedette </a></li>
+                    <li><a asp-action="Details" asp-controller="Produits" asp-route-id="3">Troisième Produit vedette </a></li>
+                    <li><a asp-action="Details" asp-controller="Produits" asp-route-id="4">Quatrième Produit vedette </a></li>
                 </ul>
-                <div class="fb-page" data-href="https://www.facebook.com/pg/Cican-Micro-2383720718334996"
-                     data-tabs="timeline" data-height="400" data-small-header="false"
-                     data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true">
-
-                    <blockquote cite="https://www.facebook.com/pg/Cican-Micro-2383720718334996" class="fb-xfbml-parse-ignore">
-                        <a href="https://www.facebook.com/pg/Cican-Micro-2383720718334996">Cican Micro</a>
-                    </blockquote>
-                </div>
-                <br>
             </div>
-
         </div>
+        <div class="row">
+            <div class="col-md-12">
+                <h2>Nos Promotions vedettes</h2>
+                <ul>
+                    <li><a asp-action="Details" asp-controller="Produits" asp-route-id="1">Premier Produit vedette </a></li>
+                    <li><a asp-action="Details" asp-controller="Produits" asp-route-id="2">Deuxieme Produit vedette </a></li>
+                    <li><a asp-action="Details" asp-controller="Produits" asp-route-id="3">Troisième Produit vedette </a></li>
+                    <li><a asp-action="Details" asp-controller="Produits" asp-route-id="4">Quatrième Produit vedette </a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <h2>Nos nouveaux produits vedettes</h2>
+                <ul>
+                    <li><a asp-action="Details" asp-controller="Produits" asp-route-id="1">Premier Produit vedette </a></li>
+                    <li><a asp-action="Details" asp-controller="Produits" asp-route-id="2">Deuxieme Produit vedette </a></li>
+                    <li><a asp-action="Details" asp-controller="Produits" asp-route-id="3">Troisième Produit vedette </a></li>
+                    <li><a asp-action="Details" asp-controller="Produits" asp-route-id="4">Quatrième Produit vedette </a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4 Facebook">
+        <h2>Facebook</h2>
+        <p>Joignez notre page Facebook pour obtenir en exclusivité :</p>
+        <ul>
+            <li>Nos promotions</li>
+            <li>Nos nouveaux produits</li>
+        </ul>
+        <div class="fb-page" data-href="https://www.facebook.com/pg/Cican-Micro-2383720718334996"
+             data-tabs="timeline" data-height="400" data-small-header="false"
+             data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true">
+
+            <blockquote cite="https://www.facebook.com/pg/Cican-Micro-2383720718334996" class="fb-xfbml-parse-ignore">
+                <a href="https://www.facebook.com/pg/Cican-Micro-2383720718334996">Cican Micro</a>
+            </blockquote>
+        </div>
+        <br>
+    </div>
+
+</div>

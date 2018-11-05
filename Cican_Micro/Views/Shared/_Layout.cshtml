@@ -15,33 +15,73 @@
               asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
         <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
     </environment>
+   
+
 </head>
 <body>
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand"><img src="~/images/CicanMicroMini.png" alt="ASP.NET" class="img-responsive" /></a>
+        <nav class="navbar navbar-inverse navbar-static-top">
+            <div class="container">
+
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand"><img src="~/images/CicanMicroMini.png" alt="ASP.NET" class="img-responsive" /></a>
+                </div>
+                <div class="navbar-collapse collapse dropdown">
+                    <div class="row">
+                        <ul class="nav navbar-nav">
+                            <li><a asp-area="" asp-controller="Home" asp-action="Index">Accueil</a></li>
+                            <li class="Dropdown" style="color:aliceblue">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Produits <span class="caret"></span></a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a asp-area="" asp-controller="Produits" asp-action="Index">Nos Produits</a></li>
+                                    <li class="divider"></li>
+                                    <li><a asp-area="" asp-controller="Home" asp-action="Liquidations">Liquidations</a></li>
+                                    <li class="divider"></li>
+                                    <li><a asp-area="" asp-controller="Home" asp-action="NProduits">Nouveaux Produits</a></li>
+                                </ul>
+                            </li>
+                            <li><a asp-area="" asp-controller="Home" asp-action="Expedition">Expédition</a></li>
+                            <li class="Dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">À Propos <span class="caret"></span></a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a asp-area="" asp-controller="Home" asp-action="About">À Propos</a></li>
+                                    <li class="divider"></li>
+                                    <li><a asp-area="" asp-controller="Home" asp-action="Contact">Nous Contacter</a></li>
+                                </ul>
+                            </li>
+
+
+                        </ul>
+                        
+                      
+                        <div class="navbar-form navbar-right" role="search">
+
+                            @using (Html.BeginForm("Index", "Produits", FormMethod.Get))
+                            {
+                                <p>
+                                    Title: @Html.TextBox("SearchString")
+                                    <input type="submit" value="Rechercher" />
+                                </p>
+                            }
+
+                        </div>
+                        
+                    </div>
+
+                    <div class="row">
+                        <partial name="_LoginPartial" />
+                    </div>
+
+                </div>
             </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li><a asp-area="" asp-controller="Home" asp-action="Index">Accueil</a></li>
-                    <li><a asp-area="" asp-controller="Produits" asp-action="Index">Nos Produits</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="Liquidations">Liquidations</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="NProduits">Nouveaux Produits</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="Expedition">Expédition</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="About">À Propos</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="Contact">Nous Contacter</a></li>
-                </ul>
-                <partial name="_LoginPartial" />
-            </div>
-        </div>
-    </nav>
+
+        </nav>
+
 
     <partial name="_CookieConsentPartial" />
 
@@ -49,7 +89,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; 2018 - Cican Micro</p>
+            <p>&copy; 2018 - Cican Micro - Nicolas Cunningham - Étienne Brisson - </p>
         </footer>
     </div>
 
@@ -72,6 +112,7 @@
                 integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa">
         </script>
         <script src="~/js/site.min.js" asp-append-version="true"></script>
+
     </environment>
     <div id="fb-root"></div>
     <script>

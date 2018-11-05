@@ -20,9 +20,18 @@ namespace Cican_Micro.Controllers
         }
 
         // GET: Produits
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchString)
         {
-            return View(await _context.Produits.ToListAsync());
+            var Produit = from m in _context.Produits
+                         select m;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                Produit = Produit.Where(s => s.Nom.Contains(searchString));
+            }
+
+            return View(await Produit.ToListAsync());
+            //return View(await _context.Produits.ToListAsync());
         }
 
         // GET: Produits/Details/5
