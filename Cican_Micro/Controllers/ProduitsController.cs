@@ -20,7 +20,7 @@ namespace Cican_Micro.Controllers
         }
 
         // GET: Produits
-        public async Task<IActionResult> Index(string searchString)
+        public async Task<IActionResult> Index(string searchString, string categorie)
         {
             var Produit = from m in _context.Produits
                          select m;
@@ -29,7 +29,9 @@ namespace Cican_Micro.Controllers
             {
                 Produit = Produit.Where(s => s.Nom.Contains(searchString));
             }
-
+            if (!String.IsNullOrEmpty(categorie))
+                Produit = Produit.Where(x => x.Categorie.Contains(categorie));
+            ViewData["Categories"] = _context.Produits.Select(x => x.Categorie).Distinct();
             return View(await Produit.ToListAsync());
             //return View(await _context.Produits.ToListAsync());
         }
@@ -153,6 +155,8 @@ namespace Cican_Micro.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
+
+
 
         private bool ProduitsExists(int id)
         {
