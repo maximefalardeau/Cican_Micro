@@ -69,7 +69,7 @@ namespace Cican_Micro.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,Nom,Modele,Categorie,prix")] Produits produits, IFormFile image)
+        public async Task<IActionResult> Create([Bind("ID,Nom,Modele,Categorie,Prix")] Produits produits, IFormFile image)
         {
             if (ModelState.IsValid)
             {
@@ -108,7 +108,7 @@ namespace Cican_Micro.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,Nom,Modele,Categorie,prix")] Produits produits, IFormFile image)
+        public async Task<IActionResult> Edit(int id, [Bind("ID,Nom,Modele,Categorie,Prix")] Produits produits, IFormFile image)
         {
             if (id != produits.ID)
             {
