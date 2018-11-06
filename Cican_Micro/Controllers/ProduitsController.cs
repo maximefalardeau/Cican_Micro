@@ -7,23 +7,27 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Cican_Micro.Models;
 using Cican_Micro.Data;
+using Microsoft.AspNetCore.Http;
+using System.IO;
+using Microsoft.AspNetCore.Hosting;
 
 namespace Cican_Micro.Controllers
 {
     public class ProduitsController : Controller
     {
         private readonly ApplicationDbContext _context;
-
-        public ProduitsController(ApplicationDbContext context)
+        private readonly IHostingEnvironment _appEnvironment;
+        public ProduitsController(ApplicationDbContext context, IHostingEnvironment appEnvironment)
         {
             _context = context;
+            _appEnvironment = appEnvironment;
         }
 
         // GET: Produits
         public async Task<IActionResult> Index(string searchString, string categorie)
         {
             var Produit = from m in _context.Produits
-                         select m;
+                          select m;
 
             if (!String.IsNullOrEmpty(searchString))
             {
@@ -65,10 +69,17 @@ namespace Cican_Micro.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,ImageUrl,Nom,Modele,Categorie,prix")] Produits produits)
+        public async Task<IActionResult> Create([Bind("ID,Nom,Modele,Categorie,prix")] Produits produits, IFormFile image)
         {
             if (ModelState.IsValid)
             {
+                string rootPath = _appEnvironment.WebRootPath;
+                string imagesPath = rootPath + "\\upload_images\\" + image.FileName;
+                using (var stream = new FileStream(imagesPath, FileMode.Create))
+                {
+                    await image.CopyToAsync(stream);
+                }
+                produits.ImageUrl = image.FileName;
                 _context.Add(produits);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -97,7 +108,7 @@ namespace Cican_Micro.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,ImageUrl,Nom,Modele,Categorie,prix")] Produits produits)
+        public async Task<IActionResult> Edit(int id, [Bind("ID,Nom,Modele,Categorie,prix")] Produits produits, IFormFile image)
         {
             if (id != produits.ID)
             {
@@ -108,6 +119,13 @@ namespace Cican_Micro.Controllers
             {
                 try
                 {
+                    string rootPath = _appEnvironment.WebRootPath;
+                    string imagesPath = rootPath + "\\upload_images\\" + image.FileName;
+                    using (var stream = new FileStream(imagesPath, FileMode.Create))
+                    {
+                        await image.CopyToAsync(stream);
+                    }
+                    produits.ImageUrl = image.FileName;
                     _context.Update(produits);
                     await _context.SaveChangesAsync();
                 }

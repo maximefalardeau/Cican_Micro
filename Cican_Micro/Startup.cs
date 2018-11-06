@@ -80,8 +80,7 @@ namespace Cican_Micro
             {
                 var roleExist = await RoleManager.RoleExistsAsync(roleName);
                 if (!roleExist)
-                {
-                    //create the roles and seed them to the database: Question 1
+                {                    
                     await RoleManager.CreateAsync(new IdentityRole(roleName));
                 }
             }
