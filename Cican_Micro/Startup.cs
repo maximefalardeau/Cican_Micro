@@ -71,6 +71,7 @@ namespace Cican_Micro
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
+            Seed.Initialize(app);
         }
         private async Task CreateRoles(IServiceProvider serviceProvider)
         {
