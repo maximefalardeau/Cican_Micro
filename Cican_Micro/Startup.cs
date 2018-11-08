@@ -54,7 +54,7 @@ namespace Cican_Micro
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, IServiceProvider services)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, IServiceProvider service)
         {
             if (env.IsDevelopment())
             {
@@ -79,15 +79,14 @@ namespace Cican_Micro
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
-            Seed.Initialize(app);
+            CreateRoles(service).Wait();
+            Seed.Initialize(app ,service);
 
-            CreateRoles(services).Wait();
 
         }
         private async Task CreateRoles(IServiceProvider serviceProvider)
         {
             var RoleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
-            var userManager = serviceProvider.GetRequiredService<UserManager<IdentityUser>>();
             string[] roleNames = { "Administrateur", "Visiteur", "Utilisateur" };
             foreach (var roleName in roleNames)
             {
@@ -97,11 +96,6 @@ namespace Cican_Micro
                     await RoleManager.CreateAsync(new IdentityRole(roleName));
                 }
             }
-
-            IdentityUser user = await userManager.FindByEmailAsync("etiennebrisson@hotmail.com"); 
-
-            await userManager.AddToRoleAsync(user, "Administrateur"); //TODO: Doesn't give and AccessDenied pages missing (404)
-
         }
     }
 }
