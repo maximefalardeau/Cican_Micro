@@ -35,6 +35,8 @@ namespace Cican_Micro
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+
+
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
@@ -44,12 +46,15 @@ namespace Cican_Micro
               .AddEntityFrameworkStores<ApplicationDbContext>()
               .AddDefaultTokenProviders();
 
+            //services.AddDefaultIdentity<IdentityUser>()
+            //  .AddEntityFrameworkStores<ApplicationDbContext>();
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, IServiceProvider service)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, IServiceProvider services)
         {
             if (env.IsDevelopment())
             {
@@ -75,20 +80,28 @@ namespace Cican_Micro
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
             Seed.Initialize(app);
-            CreateRoles(service).Wait();
+
+            CreateRoles(services).Wait();
+
         }
         private async Task CreateRoles(IServiceProvider serviceProvider)
         {
-            var RoleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();//Nouveau
-            string[] roleNames = { "Administrateur", "Visteur", "Utilisateur" };
+            var RoleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+            var userManager = serviceProvider.GetRequiredService<UserManager<IdentityUser>>();
+            string[] roleNames = { "Administrateur", "Visiteur", "Utilisateur" };
             foreach (var roleName in roleNames)
             {
                 var roleExist = await RoleManager.RoleExistsAsync(roleName);
                 if (!roleExist)
-                {                    
+                {
                     await RoleManager.CreateAsync(new IdentityRole(roleName));
                 }
             }
+
+            IdentityUser user = await userManager.FindByEmailAsync("etiennebrisson@hotmail.com"); 
+
+            await userManager.AddToRoleAsync(user, "Administrateur"); //TODO: Doesn't give and AccessDenied pages missing (404)
+
         }
     }
 }
