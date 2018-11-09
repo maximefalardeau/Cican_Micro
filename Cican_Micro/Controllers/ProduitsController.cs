@@ -33,8 +33,9 @@ namespace Cican_Micro.Controllers
             {
                 Produit = Produit.Where(s => s.Nom.Contains(searchString));
             }
-            if (!String.IsNullOrEmpty(categorie))
+            if (!String.IsNullOrEmpty(categorie) && categorie != "Tous")
                 Produit = Produit.Where(x => x.Categorie.Contains(categorie));
+
             ViewData["Categories"] = _context.Produits.Select(x => x.Categorie).Distinct();
             return View(await Produit.ToListAsync());
             //return View(await _context.Produits.ToListAsync());
@@ -73,13 +74,16 @@ namespace Cican_Micro.Controllers
         {
             if (ModelState.IsValid)
             {
-                string rootPath = _appEnvironment.WebRootPath;
-                string imagesPath = rootPath + "\\upload_images\\" + image.FileName;
-                using (var stream = new FileStream(imagesPath, FileMode.Create))
+                if (image != null && image.Length > 0)
                 {
-                    await image.CopyToAsync(stream);
+                    string rootPath = _appEnvironment.WebRootPath;
+                    string imagesPath = rootPath + "\\upload_images\\" + image.FileName;
+                    using (var stream = new FileStream(imagesPath, FileMode.Create))
+                    {
+                        await image.CopyToAsync(stream);
+                    }
+                    produits.ImageUrl = image.FileName;
                 }
-                produits.ImageUrl = image.FileName;
                 _context.Add(produits);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -119,13 +123,25 @@ namespace Cican_Micro.Controllers
             {
                 try
                 {
-                    string rootPath = _appEnvironment.WebRootPath;
-                    string imagesPath = rootPath + "\\upload_images\\" + image.FileName;
-                    using (var stream = new FileStream(imagesPath, FileMode.Create))
+                    if ( image != null && image.Length > 0)
                     {
-                        await image.CopyToAsync(stream);
+                        string rootPath = _appEnvironment.WebRootPath;
+                        string imagesPath = rootPath + "\\upload_images\\" + image.FileName;
+                        using (var stream = new FileStream(imagesPath, FileMode.Create))
+                        {
+                            await image.CopyToAsync(stream);
+                        }
+                        produits.ImageUrl = image.FileName;
                     }
-                    produits.ImageUrl = image.FileName;
+                    else
+                    {
+                        Produits ancienProduit = _context.Produits.FirstOrDefault(x => x.ID == produits.ID);
+                        if(ancienProduit != null)
+                        {
+                            produits.ImageUrl = ancienProduit.ImageUrl;
+                        }
+                        _context.Entry(ancienProduit).State = EntityState.Detached;
+                    }
                     _context.Update(produits);
                     await _context.SaveChangesAsync();
                 }

@@ -11,14 +11,15 @@
 </p>
 
 <form asp-action="Index" id="categorie" class="row">
-        <select name="categorie" class="col-lg-5 form-control-static">
-            <option value="">...</option>
-            @foreach (var item in (IEnumerable<string>)ViewData["Categories"])
-            {
-                <option value="@item">@item</option>
-            }
-        </select>
-        <input class="btn btn-primary" value="Filtrer" type="submit" />
+    <label>Catégorie: </label>
+    <select name="categorie" onchange="this.form.submit()" class="col-lg-5 form-control-static">
+        <option value=""></option>
+        @foreach (var item in (IEnumerable<string>)ViewData["Categories"])
+        {
+            <option value="@item">@item</option>
+        }
+        <option value="Tous">Tous</option>
+    </select>
 </form>
 
 <table class="table">
