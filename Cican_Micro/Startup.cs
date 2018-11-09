@@ -42,17 +42,16 @@ namespace Cican_Micro
                     Configuration.GetConnectionString("DefaultConnection")));
 
 
-            services.AddIdentity<IdentityUser, IdentityRole>()
-              .AddEntityFrameworkStores<ApplicationDbContext>()
-              .AddDefaultTokenProviders();
+            //services.AddIdentity<IdentityUser, IdentityRole>()
+            //  .AddEntityFrameworkStores<ApplicationDbContext>()
+            //  .AddDefaultTokenProviders();
 
-            //services.AddDefaultIdentity<IdentityUser>()
-            //  .AddEntityFrameworkStores<ApplicationDbContext>();
+            services.AddDefaultIdentity<IdentityUser>()
+              .AddEntityFrameworkStores<ApplicationDbContext>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
-            //services.AddDbContext<Cican_MicroContext>(options =>
-            //        options.UseSqlServer(Configuration.GetConnectionString("Cican_MicroContext")));
+           
 
         }
 
@@ -82,8 +81,8 @@ namespace Cican_Micro
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
-            CreateRoles(service).Wait();
-            Seed.Initialize(app ,service);
+            //CreateRoles(service).Wait();
+            Seed.Initialize(app,service);
 
 
         }
