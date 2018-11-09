@@ -67,13 +67,13 @@ namespace Cican_Micro.Data
                         UserName = "gaetan@gmail.com",
                     };
                     UserManager.CreateAsync(user1, "Qwerty123!").Wait();
-                    //UserManager.AddToRoleAsync(user1, "Visiteur").Wait();
+                    UserManager.AddToRoleAsync(user1, "Visiteur").Wait();
 
                     UserManager.CreateAsync(user2, "Qwerty123!").Wait();
-                    //UserManager.AddToRoleAsync(user2, "Administrateur").Wait();
+                    UserManager.AddToRoleAsync(user2, "Administrateur").Wait();
 
                     UserManager.CreateAsync(user3, "Qwerty123!").Wait();
-                    //UserManager.AddToRoleAsync(user3, "Utilisateur").Wait();
+                    UserManager.AddToRoleAsync(user3, "Utilisateur").Wait();
 
                 }
             }

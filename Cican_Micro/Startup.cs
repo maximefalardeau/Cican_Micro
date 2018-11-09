@@ -42,12 +42,21 @@ namespace Cican_Micro
                     Configuration.GetConnectionString("DefaultConnection")));
 
 
-            //services.AddIdentity<IdentityUser, IdentityRole>()
-            //  .AddEntityFrameworkStores<ApplicationDbContext>()
-            //  .AddDefaultTokenProviders();
+            services.AddDefaultIdentity<IdentityUser>().AddRoles<IdentityRole>()
+              .AddEntityFrameworkStores<ApplicationDbContext>()
+              .AddDefaultTokenProviders();
+            
 
-            services.AddDefaultIdentity<IdentityUser>()
-              .AddEntityFrameworkStores<ApplicationDbContext>();
+            services.ConfigureApplicationCookie(options =>
+            {
+                // Cookie settings
+                options.Cookie.HttpOnly = true;
+
+                options.LoginPath = "/Identity/Account/Login";
+                options.AccessDeniedPath = "/Identity/Account/AccessDenied";
+                options.SlidingExpiration = true;
+            });
+            
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
