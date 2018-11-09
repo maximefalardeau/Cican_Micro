@@ -14,5 +14,7 @@ namespace Cican_Micro.Data
         {
         }
         public DbSet<Produits> Produits { get; set; }
+        public DbSet<Blog> Blogs { get; set; }
+
     }
 }

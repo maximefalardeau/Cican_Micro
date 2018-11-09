@@ -6,14 +6,15 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Cican_Micro.Models;
+using Cican_Micro.Data;
 
 namespace Cican_Micro.Controllers
 {
     public class BlogsController : Controller
     {
-        private readonly Cican_MicroContext _context;
+        private readonly ApplicationDbContext _context;
 
-        public BlogsController(Cican_MicroContext context)
+        public BlogsController(ApplicationDbContext context)
         {
             _context = context;
         }
@@ -21,14 +22,14 @@ namespace Cican_Micro.Controllers
         // GET: Blogs
         public async Task<IActionResult> Index( string Author)
         {
-            var Blog = from m in _context.Blog
+            var Blog = from m in _context.Blogs
                           select m;
 
             
             if (!String.IsNullOrEmpty(Author) && Author != "Tous")
                 Blog = Blog.Where(x => x.Author.Contains(Author));
 
-            ViewData["Author"] = _context.Blog.Select(x => x.Author).Distinct();
+            ViewData["Author"] = _context.Blogs.Select(x => x.Author).Distinct();
             return View(await Blog.ToListAsync());
             //return View(await _context.Blog.ToListAsync());
         }
@@ -41,7 +42,7 @@ namespace Cican_Micro.Controllers
                 return NotFound();
             }
 
-            var blog = await _context.Blog
+            var blog = await _context.Blogs
                 .FirstOrDefaultAsync(m => m.id == id);
             if (blog == null)
             {
@@ -81,7 +82,7 @@ namespace Cican_Micro.Controllers
                 return NotFound();
             }
 
-            var blog = await _context.Blog.FindAsync(id);
+            var blog = await _context.Blogs.FindAsync(id);
             if (blog == null)
             {
                 return NotFound();
@@ -131,8 +132,8 @@ namespace Cican_Micro.Controllers
             {
                 return NotFound();
             }
-
-            var blog = await _context.Blog
+            
+            var blog = await _context.Blogs
                 .FirstOrDefaultAsync(m => m.id == id);
             if (blog == null)
             {
@@ -147,15 +148,15 @@ namespace Cican_Micro.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var blog = await _context.Blog.FindAsync(id);
-            _context.Blog.Remove(blog);
+            var blog = await _context.Blogs.FindAsync(id);
+            _context.Blogs.Remove(blog);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool BlogExists(int id)
         {
-            return _context.Blog.Any(e => e.id == id);
+            return _context.Blogs.Any(e => e.id == id);
         }
     }
 }
