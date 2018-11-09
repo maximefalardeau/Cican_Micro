@@ -1,5 +1,4 @@
 ﻿@model IEnumerable<Cican_Micro.Models.Produits>
-
 @{
     ViewData["Title"] = "Produits";
 }
@@ -9,10 +8,10 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
-
+<label>Catégorie: </label>
 <form asp-action="Index" id="categorie" class="row">
-    <label>Catégorie: </label>
-    <select name="categorie" onchange="this.form.submit()" class="col-lg-5 form-control-static">
+    
+    <select name="categorie" onchange="this.form.submit()" class="col-lg-2 form-control-static">
         <option value=""></option>
         @foreach (var item in (IEnumerable<string>)ViewData["Categories"])
         {
