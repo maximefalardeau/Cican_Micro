@@ -42,10 +42,10 @@ namespace Cican_Micro
                     Configuration.GetConnectionString("DefaultConnection")));
 
 
-            services.AddDefaultIdentity<IdentityUser>().AddRoles<IdentityRole>()
+            services.AddIdentity<IdentityUser,IdentityRole>().AddDefaultUI()
               .AddEntityFrameworkStores<ApplicationDbContext>()
               .AddDefaultTokenProviders();
-            
+
 
             services.ConfigureApplicationCookie(options =>
             {
@@ -90,7 +90,7 @@ namespace Cican_Micro
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
-            //CreateRoles(service).Wait();
+            CreateRoles(service).Wait();
             Seed.Initialize(app,service);
 
 
