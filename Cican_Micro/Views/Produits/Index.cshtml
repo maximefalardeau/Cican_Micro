@@ -1,7 +1,9 @@
-﻿@model IEnumerable<Cican_Micro.Models.Produits>
+﻿@using Microsoft.AspNetCore.Identity
+@model IEnumerable<Cican_Micro.Models.Produits>
 @{
     ViewData["Title"] = "Produits";
 }
+@inject UserManager<IdentityUser> UserManager
 
 <h2>@ViewData["Title"]</h2>
 
@@ -10,7 +12,7 @@
 </p>
 <label>Catégorie: </label>
 <form asp-action="Index" id="categorie" class="row">
-    
+
     <select name="categorie" onchange="this.form.submit()" class="col-lg-2 form-control-static">
         <option value=""></option>
         @foreach (var item in (IEnumerable<string>)ViewData["Categories"])
@@ -64,12 +66,14 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Prix)
                 </td>
-                <td>
-
-                    <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
-                </td>
+                @if (User.IsInRole("Administrateur"))
+                {
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
+                    </td>
+                }
             </tr>
         }
     </tbody>

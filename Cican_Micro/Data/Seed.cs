@@ -73,7 +73,7 @@ namespace Cican_Micro.Data
                     UserManager.AddToRoleAsync(user2, "Administrateur").Wait();
 
                     UserManager.CreateAsync(user3, "Qwerty123!").Wait();
-                    UserManager.AddToRoleAsync(user3, "Utilisateur").Wait();
+                    UserManager.AddToRoleAsync(user3, "Employe").Wait();
 
                 }
             }

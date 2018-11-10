@@ -98,7 +98,7 @@ namespace Cican_Micro
         private async Task CreateRoles(IServiceProvider serviceProvider)
         {
             var RoleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
-            string[] roleNames = { "Administrateur", "Visiteur", "Utilisateur" };
+            string[] roleNames = { "Administrateur", "Employe", "Utilisateur" };
             foreach (var roleName in roleNames)
             {
                 var roleExist = await RoleManager.RoleExistsAsync(roleName);

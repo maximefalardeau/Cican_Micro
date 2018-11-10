@@ -10,6 +10,7 @@ using Cican_Micro.Data;
 using Microsoft.AspNetCore.Http;
 using System.IO;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Cican_Micro.Controllers
 {
@@ -38,9 +39,8 @@ namespace Cican_Micro.Controllers
 
             ViewData["Categories"] = _context.Produits.Select(x => x.Categorie).Distinct();
             return View(await Produit.ToListAsync());
-            //return View(await _context.Produits.ToListAsync());
         }
-
+        [Authorize]
         // GET: Produits/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -58,7 +58,7 @@ namespace Cican_Micro.Controllers
 
             return View(produits);
         }
-
+        [Authorize(Roles ="Administrateur, Employe")]
         // GET: Produits/Create
         public IActionResult Create()
         {
@@ -70,6 +70,7 @@ namespace Cican_Micro.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrateur, Employe")]
         public async Task<IActionResult> Create([Bind("ID,Nom,Modele,Categorie,Prix")] Produits produits, IFormFile image)
         {
             if (ModelState.IsValid)
@@ -92,6 +93,7 @@ namespace Cican_Micro.Controllers
         }
 
         // GET: Produits/Edit/5
+        [Authorize(Roles = "Administrateur, Employe")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -112,6 +114,7 @@ namespace Cican_Micro.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrateur, Employe")]
         public async Task<IActionResult> Edit(int id, [Bind("ID,Nom,Modele,Categorie,Prix")] Produits produits, IFormFile image)
         {
             if (id != produits.ID)
@@ -162,6 +165,7 @@ namespace Cican_Micro.Controllers
         }
 
         // GET: Produits/Delete/5
+        [Authorize(Roles = "Administrateur")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -182,6 +186,7 @@ namespace Cican_Micro.Controllers
         // POST: Produits/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrateur")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var produits = await _context.Produits.FindAsync(id);

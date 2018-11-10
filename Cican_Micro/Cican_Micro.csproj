@@ -6,6 +6,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="wwwroot\images\Produits\**" />
+    <Content Remove="wwwroot\images\Produits\**" />
+    <EmbeddedResource Remove="wwwroot\images\Produits\**" />
+    <None Remove="wwwroot\images\Produits\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.1" PrivateAssets="All" />
   </ItemGroup>
@@ -23,7 +30,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\images\Produits\" />
     <Folder Include="wwwroot\upload_images\" />
   </ItemGroup>
 

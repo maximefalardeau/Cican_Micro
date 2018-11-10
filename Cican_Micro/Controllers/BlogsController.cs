@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Cican_Micro.Models;
 using Cican_Micro.Data;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Cican_Micro.Controllers
 {
+    [Authorize]
     public class BlogsController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -31,7 +33,6 @@ namespace Cican_Micro.Controllers
 
             ViewData["Author"] = _context.Blogs.Select(x => x.Author).Distinct();
             return View(await Blog.ToListAsync());
-            //return View(await _context.Blog.ToListAsync());
         }
 
         // GET: Blogs/Details/5
@@ -63,10 +64,11 @@ namespace Cican_Micro.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("id,Title,Author,Content")] Blog blog)
+        public async Task<IActionResult> Create([Bind("Title,Content")] Blog blog)
         {
             if (ModelState.IsValid)
             {
+                blog.Author = User.Identity.Name;
                 _context.Add(blog);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -95,7 +97,7 @@ namespace Cican_Micro.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("id,Title,Author,Content")] Blog blog)
+        public async Task<IActionResult> Edit(int id, [Bind("Title,Content")] Blog blog)
         {
             if (id != blog.id)
             {
@@ -106,6 +108,7 @@ namespace Cican_Micro.Controllers
             {
                 try
                 {
+                    blog.Author = User.Identity.Name;
                     _context.Update(blog);
                     await _context.SaveChangesAsync();
                 }
