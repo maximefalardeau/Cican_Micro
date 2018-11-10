@@ -47,6 +47,10 @@
                             </li>
                             <li><a asp-area="" asp-controller="Home" asp-action="Expedition">Expédition</a></li>
                             <li><a asp-area="" asp-controller="Blogs" asp-action="Index">Blog</a></li>
+                            @if (User.IsInRole("Administrateur") || User.IsInRole("Employe"))
+                            {
+                                <li><a asp-area="" asp-controller="Commandes" asp-action="Index">Commandes</a></li>
+                            }
                             <li class="Dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">À Propos <span class="caret"></span></a>
                                 <ul class="dropdown-menu" role="menu">

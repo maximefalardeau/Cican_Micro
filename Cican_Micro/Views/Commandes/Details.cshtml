@@ -1,0 +1,25 @@
+﻿@model Cican_Micro.Models.Commande
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Commande</h4>
+    <hr />
+    <p>
+        L'Utilisateur,<b>
+
+            @Html.DisplayFor(model => model.User.UserName)
+        </b>, a acheté un/une <b>
+            @Html.DisplayFor(model => model.Produit.Nom)
+        </b>
+        le <b>@Html.DisplayFor(model => model.Achat)</b>
+    </p>
+
+</div>
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>

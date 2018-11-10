@@ -44,7 +44,6 @@ namespace Cican_Micro.Data
                         Prix = 18.50M
                     }
                     );
-                    context.SaveChanges();
                 }
                 if (context.Users.Count() < 2)
                 {
@@ -76,6 +75,30 @@ namespace Cican_Micro.Data
                     UserManager.AddToRoleAsync(user3, "Employe").Wait();
 
                 }
+                if (context.Commandes.Count() < 2)
+                {
+                    var utilisateurs = context.Users.Take(3).ToArray();
+                    var produits = context.Produits.Take(3).ToArray();
+                    context.Commandes.AddRange(new Commande
+                    {
+                        Achat = DateTime.Now,
+                        UserID = utilisateurs.ElementAt(0).Id,
+                        ProduitId = produits.ElementAt(0).ID
+                    },
+                    new Commande
+                    {
+                        Achat = DateTime.Now,
+                        UserID = utilisateurs.ElementAt(1).Id,
+                        ProduitId = produits.ElementAt(1).ID
+                    },
+                    new Commande
+                    {
+                        Achat = DateTime.Now,
+                        UserID = utilisateurs.ElementAt(2).Id,
+                        ProduitId = produits.ElementAt(2).ID
+                    });
+                }
+                context.SaveChanges();
             }
 
         }
